@@ -21,13 +21,13 @@ pipeline{
 
         stage('Stop Existing Container'){
             steps {
-                sh '/usr/local/bin/docker stop jenkins-python-demo'
+                sh '/usr/local/bin/docker stop jenkins-python-demo || true'
             }
         }
 
         stage('Remove Existing Container'){
             steps {
-                sh '/usr/local/bin/docker rm jenkins-python-demo'
+                sh '/usr/local/bin/docker rm jenkins-python-demo || true'
             }
         }
 
