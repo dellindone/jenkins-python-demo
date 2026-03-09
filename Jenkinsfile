@@ -15,7 +15,7 @@ pipeline{
 
         stage('Build Docker Image'){
             steps {
-                sh '/usr/local/bin/docker build -t jenkins-python-demo .'
+                sh '/usr/local/bin/docker build -t jenkins-python-demo:${BUILD_NUMBER} .'
             }
         }
 
@@ -33,7 +33,7 @@ pipeline{
 
         stage('Run container'){
             steps {
-                sh '/usr/local/bin/docker run -d -p 8000:80 --name jenkins-python-demo jenkins-python-demo'
+                sh '/usr/local/bin/docker run -d -p 8000:80 --name jenkins-python-demo jenkins-python-demo:${BUILD_NUMBER}'
             }
         }
     }
