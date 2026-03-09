@@ -15,7 +15,7 @@ pipeline{
 
         stage('Build Docker Image'){
             steps {
-                sh '/usr/local/bin/docker docker build -t jenkins-python-demo .'
+                sh '/usr/local/bin/docker build -t jenkins-python-demo .'
             }
         }
 
