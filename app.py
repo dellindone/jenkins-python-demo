@@ -12,5 +12,4 @@ def healthcheck():
     return {'status': 'healthy'}
 
 if __name__ == '__main__':
-    time.sleep(10)  # Simulate some startup time
     app.run(host='0.0.0.0', port=80)

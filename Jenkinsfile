@@ -39,7 +39,14 @@ pipeline{
 
         stage('Test Application'){
             steps {
-                sh 'curl -f http://127.0.0.1:8000/healthcheck || exit 1'
+                sh '''
+                    for i in {1..10}; do
+                        curl -f http://127.0.0.1:8000/healthcheck && exit 0
+                        echo "Waiting for service..."
+                        sleep 5
+                    done
+                    exit 1
+                '''
             }
         }
     }
