@@ -19,6 +19,12 @@ pipeline{
             }
         }
 
+        stage('Free up port'){
+            steps {
+                sh 'sudo fuser -k 8000/tcp || true'
+            }
+        }
+
         stage('Run container'){
             steps {
                 sh '/usr/local/bin/docker run -d -p 8000:80 jenkins-python-demo'
