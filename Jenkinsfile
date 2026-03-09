@@ -19,9 +19,15 @@ pipeline{
             }
         }
 
-        stage('Free up port'){
+        stage('Stop Existing Container'){
             steps {
-                sh 'sudo fuser -k 8000/tcp || true'
+                sh '/usr/local/bin/docker stop $(/usr/local/bin/docker ps -q --filter ancestor=jenkins-python-demo) || true'
+            }
+        }
+
+        stage('Remove Existing Container'){
+            steps {
+                sh '/usr/local/bin/docker rm $(/usr/local/bin/docker ps -a -q --filter ancestor=jenkins-python-demo) || true'
             }
         }
 
