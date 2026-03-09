@@ -36,5 +36,11 @@ pipeline{
                 sh '/usr/local/bin/docker run -d -p 8000:80 --name jenkins-python-demo jenkins-python-demo:${BUILD_NUMBER}'
             }
         }
+
+        stage('Test Application'){
+            steps {
+                sh 'curl -f http://127.0.0.1:8000/healthcheck || exit 1'
+            }
+        }
     }
 }
