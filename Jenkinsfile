@@ -21,7 +21,7 @@ pipeline{
 
         stage('Run container'){
             steps {
-                sh 'docker run -d -p 5000:5000 python-demo'
+                sh 'docker run -d -p 8000:80 python-demo'
             }
         }
     }
