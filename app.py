@@ -9,7 +9,7 @@ def hello_world():
 
 @app.route('/healthcheck')
 def healthcheck():
-    return 'OK', 200
+    return {'status': 'healthy'}
 
 if __name__ == '__main__':
     time.sleep(10)  # Simulate some startup time
