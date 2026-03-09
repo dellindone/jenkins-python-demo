@@ -33,7 +33,7 @@ pipeline{
 
         stage('Run container'){
             steps {
-                sh '/usr/local/bin/docker run -d -p 8000:80 jenkins-python-demo'
+                sh '/usr/local/bin/docker run -d -p 8000:80 --name jenkins-python-demo jenkins-python-demo'
             }
         }
     }
