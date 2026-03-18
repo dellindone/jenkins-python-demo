@@ -1,6 +1,10 @@
 pipeline{
     agent any
 
+    environment {
+        IMAGE_NAME = 'jenkins-python-demo'
+    }
+
     stages{
         stage('Checkout'){
             steps {
@@ -15,25 +19,25 @@ pipeline{
 
         stage('Build Docker Image'){
             steps {
-                sh '/usr/local/bin/docker build -t jenkins-python-demo:${BUILD_NUMBER} .'
+                sh '/usr/local/bin/docker build -t ${IMAGE_NAME}:${BUILD_NUMBER} .'
             }
         }
 
         stage('Stop Existing Container'){
             steps {
-                sh '/usr/local/bin/docker stop jenkins-python-demo || true'
+                sh '/usr/local/bin/docker stop ${IMAGE_NAME} || true'
             }
         }
 
         stage('Remove Existing Container'){
             steps {
-                sh '/usr/local/bin/docker rm jenkins-python-demo || true'
+                sh '/usr/local/bin/docker rm ${IMAGE_NAME} || true'
             }
         }
 
         stage('Run container'){
             steps {
-                sh '/usr/local/bin/docker run -d -p 8000:80 --name jenkins-python-demo jenkins-python-demo:${BUILD_NUMBER}'
+                sh '/usr/local/bin/docker run -d -p 8000:80 --name ${IMAGE_NAME} ${IMAGE_NAME}:${BUILD_NUMBER}'
             }
         }
 

@@ -1,3 +1,4 @@
+import os
 import time
 from flask import Flask
 
@@ -11,6 +12,9 @@ def hello_world():
 def healthcheck():
     return {'status': 'healthy'}
 
+
 if __name__ == '__main__':
-    time.sleep(10)
-    app.run(host='0.0.0.0', port=80)
+    app.run(
+        host='0.0.0.0',
+        port=int(os.environ.get("PORT", 8000))
+    )
